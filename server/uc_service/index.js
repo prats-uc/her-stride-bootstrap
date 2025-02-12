@@ -1,12 +1,8 @@
 const express = require('express');
 const Router = express();
 const { UCServiceDML } = require('./models');
+const _ = require('lodash')
 
-/**
-  curl --location --request POST 'http://localhost:3001/api/getCategories' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{}'
-*/
 Router.post('/getCategories', async (req, res) => {
   try {
     const categories = await UCServiceDML.getAllCategories();
@@ -23,14 +19,6 @@ Router.post('/getCategories', async (req, res) => {
   }
 });
 
-
-/**
-  curl --location --request POST 'http://localhost:3001/api/getCategoriesDetails' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "categoryKey": "salon"
-  }'
-*/
 Router.post('/getCategoriesDetails', async (req, res) => {
   try {
     const { categoryKey } = req.body;
@@ -55,14 +43,6 @@ Router.post('/getCategoriesDetails', async (req, res) => {
   }
 });
 
-/**
- curl --location --request POST 'http://localhost:3001/api/addCategory' \
- --header 'Content-Type: application/json' \
- --data-raw '{
-    "categoryKey": "salon",
-    "categoryName": "Salon At Home"
- }'
- */
 Router.post('/addCategory', async (req, res) => {
   try {
     const { categoryKey, categoryName } = req.body;
@@ -77,15 +57,6 @@ Router.post('/addCategory', async (req, res) => {
   }
 });
 
-/**
- curl --location --request POST 'http://localhost:3001/api/addProvider' \
- --header 'Content-Type: application/json' \
- --data-raw '{
-    "categoryKey": "salon",
-    "providerName": "Edna Mode",
-    "providerRating": 4.5
- }'
- */
 Router.post('/addProvider', async (req, res) => {
   try {
     const { categoryKey, providerName, providerRating } = req.body;
