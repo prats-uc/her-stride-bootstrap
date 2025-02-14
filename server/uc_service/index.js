@@ -1,7 +1,6 @@
 const express = require('express');
 const Router = express();
 const { UCServiceDML } = require('./models');
-const _ = require('lodash')
 
 Router.post('/getCategories', async (req, res) => {
   try {
